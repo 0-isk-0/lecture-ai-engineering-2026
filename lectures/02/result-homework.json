@@ -1,0 +1,83 @@
+{
+  "task": "glossary-knowledge",
+  "config": {
+    "base_model": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "seed": 42,
+    "num_train_epochs": 6,
+    "warmup_steps": 10,
+    "lr": 0.0002,
+    "lora_r": 32,
+    "lora_alpha": 64,
+    "max_seq_len": 512,
+    "max_new_tokens": 160,
+    "gen": {
+      "do_sample": false
+    },
+    "task": "glossary-knowledge"
+  },
+  "versions": {
+    "transformers": "5.18.0",
+    "peft": "0.21.1",
+    "trl": "1.14.2",
+    "torch": "2.11.0+cu130"
+  },
+  "method": "LoRA（量子化なし）",
+  "data": {
+    "train": 132,
+    "test": 36,
+    "buckets": {
+      "known": 14,
+      "paraphrase": 14,
+      "unknown": 8
+    }
+  },
+  "before": {
+    "label": "before",
+    "n": 36,
+    "format_rate": 0.028,
+    "content_rate": 0.0,
+    "both_rate": 0.0,
+    "content_by_bucket": {
+      "known": 0.0,
+      "paraphrase": 0.0,
+      "unknown": 0.0
+    },
+    "seconds": 190.5
+  },
+  "after": {
+    "label": "after",
+    "n": 36,
+    "format_rate": 1.0,
+    "content_rate": 0.639,
+    "both_rate": 0.639,
+    "content_by_bucket": {
+      "known": 1.0,
+      "paraphrase": 0.429,
+      "unknown": 0.375
+    },
+    "seconds": 69.0
+  },
+  "retrieval": {
+    "label": "retrieval",
+    "n": 36,
+    "format_rate": 0.0,
+    "content_rate": 0.0,
+    "both_rate": 0.0,
+    "content_by_bucket": {
+      "known": 0.0,
+      "paraphrase": 0.0,
+      "unknown": 0.0
+    },
+    "seconds": 126.0
+  },
+  "regressed": [],
+  "train_seconds": 420,
+  "input_tokens_per_question": {
+    "学習（質問のみ）": 116.1,
+    "検索（質問＋用語集3件）": 218.6,
+    "倍率": 1.88
+  },
+  "retrieval_hit_rate": 0.806,
+  "executed_training_myself": true
+}
